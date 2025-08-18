@@ -1,14 +1,14 @@
-# MCP Web Scraping POC Documentation (INCOMPLETE)
-
-## Environment Setup (reference to README!)
-- 
--
-- Claude Sonnet/Opus 4 have MCP agent capabilities.
-- Use OpenRouter for tokens (API key required).
+# MCP Web Scraping POC Documentation
 
 ## Provider Selection
-- Cost and purchasing tokens for testing were initial challenges - different models have different capabilities.
--> (overall cost breakdown here)
+- To connect a server from a GitHub repository rather than one of the MCP integrations that are already set up and accessible 
+within the connectors tab, you can use the free version of Claude or ChatGPT (we have not explored other options)
+- Since we believed initially that all MCP usage needed to be paid for, we ended up choosing Claude, since the version of ChatGPT
+that supports MCP is $200 a month versus Claude's $20 a month
+- However, in addition to this, you will also need to pay regardless in order to purchase tokens to be able to communicate with
+the model. This cost breakdown is based on OpenRouter's cost breakdown rather than Anthropic's cost breakdown, since their token
+prices are cheaper. Token prices are based on the number of tokens you send in and get out, and for Claude Sonnet 4, the model we
+used, the token prices were $3/M input tokens and $15/M output tokens
 
 ## Installation Commands
 
@@ -26,7 +26,8 @@ uvx mcp-server-browser-use@latest
 
 ## Configuration (include example Claude file?)
 - Update `claude_desktop_config.json` to enable internet access for Claude.
--> (include path on where to locate, both mac and windows)
+-> On Windows, in order to locate, navigate to Users > Your.User > AppData > Roaming > Claude, and edit (or, if you do not find the file, create) the claude_desktop_config file
+- In order to get to the AppData file, type in "Run" on the Windows search bar, press on the app that appears, type, in %appdata% in the box within that app, and press enter; a folder should appear with the AppData file path
     - Claude can search/read web content and orchestrate sub-agents.
     - Cannot yet interact with web forms (no tools yet)... where inspector comes in
 
@@ -61,7 +62,7 @@ npx @modelcontextprotocol/inspector \
   -e MCP_LLM_PROVIDER=openrouter \
   -e MCP_LLM_MODEL_NAME=anthropic/claude-sonnet-4 \
   -e MCP_LLM_TEMPERATURE=0.2 \
-  -- /Users/Ella.Gonzalez/.local/bin/uvx mcp-server-browser-use@latest
+  -- /Users/Your.User/.local/bin/uvx mcp-server-browser-use@latest
 ```
 
 ## Troubleshooting
@@ -69,6 +70,10 @@ npx @modelcontextprotocol/inspector \
 - Issues with OpenAI API keys -> make sure the key is the OPENROUTER KEY
 - Ensure API keys are consistent across `.env` and config files.
 - If Claude says it can't do something, REMIND Claude that it has the tools now
+- To make sure your MCP server is working, navigate to Settings > Developer, and then you should see something similar to the below, except it should not say that the server has failed
+![alt text](image.png)
+    - If the server says that it has failed, then you can access the logs in the Claude file (instructions on how to navigate to it above)
+    - If the server is failing and you know that you are certain you set everything up correctly, and Claude is not recognizing that it has MCP capabilities, a potential fix is to clear its cache
 
 ## Usage Tips
 
@@ -76,7 +81,7 @@ npx @modelcontextprotocol/inspector \
 - Remind Claude of its new abilities.
 - Ask for browser agent or deep research tool usage.
 - Provide form URLs or research topics.
-    - note for deep research: you can request multiple sub-agents to work on seperate tasks!
+    - Note for deep research: you can request multiple sub-agents to work on seperate tasks!
 
 ## Example Form Filling Site
 
