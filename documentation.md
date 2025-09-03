@@ -10,14 +10,15 @@ the model. This cost breakdown is based on OpenRouter's cost breakdown rather th
 prices are cheaper. Token prices are based on the number of tokens you send in and get out, and for Claude Sonnet 4, the model we
 used, the token prices were $3/M input tokens and $15/M output tokens
 
+## Prerequisites
+
+Ensure you have Node.js installed first through npx. The latest version at the time of Node.js (v22.19.0) was used to run this project one of the team member's computers, and can be installed from the official website at https://nodejs.org/en/download.
+
 ## Installation Commands
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uvx --from mcp-server-browser-use@latest python -m playwright install
-uv tool install 'browser-use[cli]'
-uv sync
-uvx mcp-server-browser-use@latest
 ```
 
 ## Initial CLI Attempt
@@ -36,7 +37,7 @@ uvx mcp-server-browser-use@latest
 { 
     "mcpServers": {
         "browser-use": {
-            "command": "/Users/Your.Name/.local/bin/uvx",
+            "command": "C:/Users/Your.Name/.local/bin/uvx",
             "args": ["mcp-server-browser-use@latest"],
             "env": {
                 "MCP_LLM_OPENROUTER_API_KEY": "your-secret-key-here",
@@ -62,7 +63,7 @@ npx @modelcontextprotocol/inspector \
   -e MCP_LLM_PROVIDER=openrouter \
   -e MCP_LLM_MODEL_NAME=anthropic/claude-sonnet-4 \
   -e MCP_LLM_TEMPERATURE=0.2 \
-  -- /Users/Your.User/.local/bin/uvx mcp-server-browser-use@latest
+  C:/Users/Your.User/.local/bin/uvx mcp-server-browser-use@latest
 ```
 
 ## Troubleshooting
